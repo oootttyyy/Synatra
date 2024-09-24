@@ -101,34 +101,42 @@
           <h1 class="title is-1 publication-title">Synatra: Turning Indirect Knowledge into Direct Demonstrations for Digital Agents at Scale</h1>
           <div class="is-size-5 publication-authors">
             <!-- (CHANGE) Update author names and links to your contributors -->
-            <span class="author-block">
-              <a href="">Tianyue Ou</a><sup>1</sup>,</span>
-            <span class="author-block">
-              <a href="">Frank F. Xu</a><sup>1</sup>,</span>
-            <span class="author-block">
-              <a href="">Aman Madaan</a><sup>1</sup>,
-            </span>
-            <span class="author-block">
-              <a href="">Jiarui Liu</a><sup>1</sup>,
-            </span>
-            <span class="author-block">
-              <a href="">Robert Lo</a><sup>1</sup>,
-            </span>
-            <span class="author-block">
-              <a href="">Abishek Sridhar</a><sup>1</sup>,
-            </span>
-            <span class="author-block">
-              <a href="">Sudipta Sengupta</a><sup>2</sup>
-            </span>
-            <span class="author-block">
-              <a href="">Dan Roth</a><sup>2</sup>
-            </span>
-            <span class="author-block">
-              <a href="">Graham Neubig</a><sup>1</sup>
-            </span>
-            <span class="author-block">
-              <a href="">Shuyan Zhou</a><sup>1</sup>
-            </span>
+            <div class="author-row">
+              <span class="author-block">
+                <a href="">Tianyue Ou</a><sup>1</sup>,
+              </span>
+              <span class="author-block">
+                <a href="">Frank F. Xu</a><sup>1</sup>,
+              </span>
+              <span class="author-block">
+                <a href="">Aman Madaan</a><sup>1</sup>,
+              </span>
+            </div>
+            <div class="author-row">
+              <span class="author-block">
+                <a href="">Jiarui Liu</a><sup>1</sup>,
+              </span>
+              <span class="author-block">
+                <a href="">Robert Lo</a><sup>1</sup>,
+              </span>
+              <span class="author-block">
+                <a href="">Abishek Sridhar</a><sup>1</sup>,
+              </span>
+            </div>
+            <div class="author-row">
+              <span class="author-block">
+                <a href="">Sudipta Sengupta</a><sup>2</sup>
+              </span>
+              <span class="author-block">
+                <a href="">Dan Roth</a><sup>2</sup>
+              </span>
+              <span class="author-block">
+                <a href="">Graham Neubig</a><sup>1</sup>
+              </span>
+              <span class="author-block">
+                <a href="">Shuyan Zhou</a><sup>1</sup>
+              </span>
+            </div>
           </div>
 
           <!-- (CHANGE) Update affiliations if necessary -->
@@ -139,7 +147,6 @@
 
           <div class="column has-text-centered">
             <div class="publication-links">
-              (CHANGE) Update the links to your paper, arXiv, video, code, and dataset
               <!-- <span class="link-block">
                 <a href="https://arxiv.org/pdf/2011.12948"
                    class="external-link button is-normal is-rounded is-dark">
@@ -207,10 +214,10 @@
       </h2>
     </div>
   </div>
-</section>
+</section> -->
 
-Video carousel section: (CHANGE) Update the video sources or remove if not relevant
-<section class="hero is-light is-small">
+<!-- Video carousel section: (CHANGE) Update the video sources or remove if not relevant -->
+<!-- <section class="hero is-light is-small">
   <div class="hero-body">
     <div class="container">
       <div id="results-carousel" class="carousel results-carousel">
@@ -236,9 +243,8 @@ Video carousel section: (CHANGE) Update the video sources or remove if not relev
       </div>
     </div>
   </div>
-</section>
+</section> -->
 
-<!-- Abstract section: (CHANGE) Update this text with your project's abstract
 <section class="section">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
@@ -246,23 +252,40 @@ Video carousel section: (CHANGE) Update the video sources or remove if not relev
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            We present the first method capable of photorealistically reconstructing a non-rigidly
-            deforming scene using photos/videos captured casually from mobile phones.
+            LLMs can now act as autonomous agents that interact with digital environments and complete specific objectives (e.g., arranging an online meeting). However, accuracy is still far from satisfactory, partly due to a lack of large-scale, direct demonstrations for digital tasks. Obtaining supervised data from humans is costly, and automatic data collection through exploration or reinforcement learning relies on complex environmental and content setup, resulting in datasets that lack comprehensive coverage of various scenarios. On the other hand, there is abundant knowledge that may indirectly assist task completion, such as online tutorials that were created for human consumption. In this work, we present <b>Synatra</b>, an approach that effectively transforms this indirect knowledge into direct supervision at scale. We define different types of indirect knowledge, and carefully study the available sources to obtain it, methods to encode the structure of direct demonstrations, and finally methods to transform indirect knowledge into direct demonstrations. We use 100k such synthetically-created demonstrations to finetune a 7B CodeLlama, and demonstrate that the resulting agent surpasses all comparably sized models on three web-based task benchmarks Mind2Web, MiniWoB++ and WebArena, as well as surpassing GPT-3.5 on WebArena and Mind2Web. In addition, while synthetic demonstrations prove to be only 3% the cost of human demonstrations (at $0.031 each), we show that the synthetic demonstrations can be more effective than an identical number of human demonstrations collected from limited domains.
           </p>
-          <p>
-            Our approach augments neural radiance fields
-            (NeRF) by optimizing an
-            additional continuous volumetric deformation field that warps each observed point into a
-            canonical 5D NeRF.
-          </p>
-          (CHANGE) Update this section with details about your own project
         </div>
       </div>
     </div>
   </div>
 </section>
 
-Paper video section: (CHANGE) Update with your project's video presentation
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Synatra Data Synthesis Method</h2>
+            <img src="./static/images/main.pdf" >
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Synatra-CodeLlama-7B Performance</h2>
+            <img src="./static/images/main_table.pdf" style="width: 80%; height: auto;">
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- Paper video section: (CHANGE) Update with your project's video presentation
 <section class="section">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
