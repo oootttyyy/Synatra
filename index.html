@@ -276,6 +276,11 @@
       <div class="column is-four-fifths">
         <h2 class="title is-3">Method</h2>
             <img src="./static/images/main.svg" >
+            <div class="content has-text-justified">
+            <md-block class="content">
+              we propose <b>Synatra</b>, a data generation approach that synthesizes high-quality trajectories for complex digital tasks at scale. This approach is based on the intuition that there is a rich trove of existing knowledge that encodes indirect supervision about how to perform digital tasks. The key idea of Synatra is that, given this indirect knowledge, we can leverage an LLM to re-purpose it into more usable form that directly demonstrates the exact action to take given a concrete observation. We propose an iterative approach that first uses an LLM to rewrite an article into a hypothetical trajectory, then leverages a generative model to synthesize the intermediate observation between two consecutive actions. We also generate from random observation by taking a sampled web page as an intermediate observation at time step t, and synthesize the specific task i, the previous actions a1 , ..., at−1 and the subsequent action at consisting of an action, a corresponding target element in the observation, and a natural language summary of the action.
+            </md-block>
+          </div>
       </div>
     </div>
   </div>
@@ -286,14 +291,24 @@
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">Data Statisics and Comparison</h2>
+        <h2 class="title is-3">Data Statisics</h2>
           <div class = 'some text'>
+            <div class="content has-text-justified">
             <md-block class="content">
-              Coming...
-              <!-- We generated 99,924 samples of web trajectory data using a combination of online tutorials and random observations. On the left below is intents' distribution on shopping websites and on the right are embeddings of web page observations. -->
+              We generated 99,924 samples of web trajectory data using a combination of online tutorials and random observations. We generated web trajectories covering websites from 21 domains and uses an action space with 12 different actions.
             </md-block>
-          <!-- </div>
-          <div class="columns is-multiline">
+          </div>
+          </div>
+          
+          <!-- <img src="./static/images/action_space.png" style="width: 40%; height: auto;" > -->
+          <img src="./static/images/tmpp_popular_amazon_45_obj_2.png" style="width: 80%; height: auto;">
+          <div class="content has-text-justified">
+            </div>
+          <md-block class="content">
+            Top intents in our trajectories on shopping websites
+          </md-block>
+        </div>
+          <!-- <div class="columns is-multiline">
             <div class="column is-one-half">
               <img src="./static/images/tmpp_popular_amazon_45_obj_2.png" alt="Image 1">
             </div>
@@ -301,7 +316,6 @@
               <img src="./static/images/tsne_obj.png" alt="Image 2">
             </div>
           </div> -->
-      </div>
     </div>
   </div>
 </section>
@@ -313,11 +327,141 @@
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">Data Visualizer</h2>
+        <h2 class="title is-3">Data Explorer</h2>
           <div class = 'some text'>
             <md-block class="content">
               Coming...
             </md-block>
+            <!-- <div class="column has-text-centered" style="padding: 20px;">
+              <button class="button is-dark is-rounded" onclick="randomSelectTask()">Random Task</button>
+              <script>
+                function randomSelectTask() {
+                  var randomTask = allTasks[Math.floor(Math.random() * allTasks.length)];
+                  document.getElementById("search-task").value = randomTask.task.toLowerCase();
+                  autoResize(document.getElementById("search-task"));
+                  selectedTask = randomTask;
+                  displayTask(randomTask);
+                }
+              </script>
+            </div>
+            <script>
+              let allTasks;
+              fetch("./static/data/training_annotations.json")
+                .then(response => response.json())
+                .then(data => {
+                  allTasks = data;
+                })
+                .catch(error => console.error(error));
+
+              let candidateTasks = allTasks;
+
+            </script>
+
+            <div class="columns">
+              <div class="column">
+                <h5 class="title is-5">Task</h5>
+                <div class="dropdown" id="task-dropdown" style="display: inline">
+                  <div class="dropdown-trigger">
+                    <textarea class="textarea" rows="1" oninput="autoResize(this)" id="search-task"
+                      contenteditable="true"></textarea>
+                  </div>
+                  <div class="dropdown-menu" role="menu">
+                    <div class="dropdown-content" id="task-items">
+                    </div>
+                  </div>
+                </div>
+                <script>
+                  var taskOnDisplay = null;
+                  function autoResize(textarea) {
+                    // Reset the height of the textarea
+                    textarea.style.height = "auto";
+
+                    // Set the height of the textarea to fit its content
+                    textarea.style.height = textarea.scrollHeight + "px";
+                  }
+
+
+                  const searchBox = document.getElementById("search-task");
+                  const searchItems = document.getElementById("task-items");
+                  const searchDropdown = document.getElementById("task-dropdown");
+                  let selectedTask = null;
+
+                  function displayTask(task) {
+                    taskOnDisplay = task;
+                    taskInfo = document.getElementById("task-info")
+                    taskInfo.innerHTML = "";
+                    action_header = document.createElement("h5");
+                    action_header.classList.add("title");
+                    action_header.classList.add("is-5");
+                    action_header.innerHTML = "Actions";
+                    taskInfo.appendChild(action_header);
+                    {
+                      action_table = document.createElement("table");
+                      for (let i = 0; i < task.actions.length; i++) {
+                        action_type = '<span class="action_type">' + task.actions[i][0] + "</span>";
+                        node_type = '<span class="node_type">' + task.actions[i][1] + "</span>";
+                        node_repr = '<span class="node_repr">' + task.actions[i][2] + "</span>";
+                        action_table.innerHTML += "<tr><td>" + (i + 1) + ".</td><td>" + action_type +
+                          "</td ><td style='padding-left:0; padding-right:0;  vertical-align: top'>⮞</td><td>" +
+                          node_type + "<br>" + node_repr + "</td></tr > ";
+                      }
+                      taskInfo.appendChild(action_table);
+                    }
+                  }
+
+                  function search_task() {
+                    let suggestions = [];
+
+                    // Filter items based on search text
+                    const searchText = searchBox.value.toLowerCase();
+                    for (let i = 0; i < candidateTasks.length; i++) {
+                      if (candidateTasks[i].task.toLowerCase().includes(searchText)) {
+                        suggestions.push([i, candidateTasks[i].task]);
+                      }
+                    }
+
+                    // Clear the autocomplete dropdown and display suggestions
+                    searchItems.innerHTML = "";
+                    for (let i = 0; i < suggestions.length; i++) {
+                      const suggestion = suggestions[i];
+                      const item = document.createElement("a");
+                      item.innerHTML = suggestion[1];
+                      item.classList.add("dropdown-item");
+                      item.classList.add("autowrap");
+                      item.addEventListener("click", function () {
+                        searchBox.value = suggestion[1];
+                        searchItems.innerHTML = "";
+                        autoResize(searchBox);
+                        selectedTask = candidateTasks[suggestion[0]];
+                      });
+                      searchItems.appendChild(item);
+                    }
+
+                    // Show the autocomplete dropdown
+                    searchDropdown.classList.add("is-active");
+                  }
+
+                  searchBox.addEventListener("input", search_task);
+                  searchBox.addEventListener("focus", search_task);
+
+                  // Close the autocomplete dropdown when clicking outside of it
+                  document.addEventListener("click", function (e) {
+                    if (!searchItems.contains(e.target) && !searchBox.contains(e.target)) {
+                      searchItems.mdContent = "";
+                      searchDropdown.classList.remove("is-active");
+                    }
+                    if (selectedTask != null && (taskOnDisplay == null || taskOnDisplay.trace_url != selectedTask.trace_url)) {
+                      displayTask(selectedTask);
+                    }
+                  });
+                </script>
+                <br>
+                <div class="content" id="task-info" style="overflow-y:scroll; max-height: 400px">
+                </div>
+              </div>
+            </div> -->
+
+            
           </div>
       </div>
     </div>
@@ -361,17 +505,18 @@
 <!-- Update or remove the relevant video files and descriptions -->
 
 <!-- BibTeX section: (CHANGE) Update or remove if not applicable -->
-<!-- <section class="section" id="BibTeX">
+<section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
-    <pre><code>@article{park2021nerfies,
-  author    = {Park, Keunhong and Sinha, Utkarsh and Barron, Jonathan T. and Bouaziz, Sofien and Goldman, Dan B and Seitz, Steven M. and Martin-Brualla, Ricardo},
-  title     = {Nerfies: Deformable Neural Radiance Fields},
-  journal   = {ICCV},
-  year      = {2021},
-}</code></pre>
+    <pre><code>@article{ou2024synatraturningindirectknowledge,
+      title={Synatra: Turning Indirect Knowledge into Direct Demonstrations for Digital Agents at Scale}, 
+      author={Tianyue Ou and Frank F. Xu and Aman Madaan and Jiarui Liu and Robert Lo and Abishek Sridhar 
+      and Sudipta Sengupta and Dan Roth and Graham Neubig and Shuyan Zhou},
+      journal={arXiv preprint}
+      }
+    </code></pre>
   </div>
-</section> -->
+</section>
 
 <!-- Footer: (REMOVE/CHANGE) If you don't want a license section, update or remove this part -->
 <footer class="footer">
