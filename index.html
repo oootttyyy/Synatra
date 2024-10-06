@@ -329,10 +329,10 @@
       <div class="column is-four-fifths">
         <h2 class="title is-3">Data Explorer</h2>
           <div class = 'some text'>
-            <md-block class="content">
+            <!-- <md-block class="content">
               Coming...
-            </md-block>
-            <!-- <div class="column has-text-centered" style="padding: 20px;">
+            </md-block> -->
+            <div class="column has-text-centered" style="padding: 20px;">
               <button class="button is-dark is-rounded" onclick="randomSelectTask()">Random Task</button>
               <script>
                 function randomSelectTask() {
@@ -350,10 +350,10 @@
                 .then(response => response.json())
                 .then(data => {
                   allTasks = data;
+                  candidateTasks = allTasks;  
                 })
                 .catch(error => console.error(error));
 
-              let candidateTasks = allTasks;
 
             </script>
 
@@ -459,7 +459,7 @@
                 <div class="content" id="task-info" style="overflow-y:scroll; max-height: 400px">
                 </div>
               </div>
-            </div> -->
+            </div>
 
             
           </div>
