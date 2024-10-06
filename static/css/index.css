@@ -13,6 +13,7 @@ body {
     margin-bottom: 5px;
 }
 
+
 .dnerf {
   font-variant: small-caps;
 }
@@ -149,10 +150,33 @@ body {
   margin: 0 !important;
 }
 
+.task_title{
+  text-align: left;
+  font-weight: 700;
+  margin-top: 2em;
+  margin-bottom: 1em;
+}
+
+.task_content{
+  text-align: left;
+  padding-left: 2em;
+}
+
+.content{
+  overflow-y: unset !important;
+  max-height: unset !important;
+}
+
+.dropdown-content{
+  overflow-y: scroll !important;
+  max-height: 400px !important;
+}
+
 #interpolation-image-wrapper {
   width: 100%;
 }
 #interpolation-image-wrapper img {
   border-radius: 5px;
 }
+
 

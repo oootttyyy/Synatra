@@ -98,53 +98,7 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">Synatra: Turning Indirect Knowledge into Direct Demonstrations for Digital Agents at Scale</h1>
-          <div class="is-size-5 publication-authors">
-            <!-- (CHANGE) Update author names and links to your contributors -->
-            <div class="author-row">
-              <span class="author-block">
-                <a href="">Tianyue Ou</a><sup>1</sup>,
-              </span>
-              <span class="author-block">
-                <a href="">Frank F. Xu</a><sup>1</sup>,
-              </span>
-              <span class="author-block">
-                <a href="">Aman Madaan</a>
-                <sup>1</sup>,
-              </span>
-            </div>
-            <div class="author-row">
-              <span class="author-block">
-                <a href="">Jiarui Liu</a><sup>1</sup>,
-              </span>
-              <span class="author-block">
-                <a href="">Robert Lo</a><sup>1</sup>,
-              </span>
-              <span class="author-block">
-                <a href="">Abishek Sridhar</a><sup>1</sup>,
-              </span>
-            </div>
-            <div class="author-row">
-              <span class="author-block">
-                <a href="">Sudipta Sengupta</a><sup>2</sup>
-              </span>
-              <span class="author-block">
-                <a href="">Dan Roth</a><sup>2</sup>
-              </span>
-              <span class="author-block">
-                <a href="">Graham Neubig</a><sup>1</sup>
-              </span>
-              <span class="author-block">
-                <a href="">Shuyan Zhou</a><sup>1</sup>
-              </span>
-            </div>
-          </div>
-
-          <!-- (CHANGE) Update affiliations if necessary -->
-          <div class="is-size-5 publication-authors">
-            <span class="author-block"><sup>1</sup>Carnegie Mellon University,</span>
-            <span class="author-block"><sup>2</sup>Amazon AWS AI</span>
-          </div>
+          
 
           <div class="column has-text-centered">
             <div class="publication-links">
@@ -346,7 +300,7 @@
             </div>
             <script>
               let allTasks;
-              fetch("./static/data/training_annotations.json")
+              fetch("./static/data/small_synatra_sample.json")
                 .then(response => response.json())
                 .then(data => {
                   allTasks = data;
@@ -357,6 +311,11 @@
 
             </script>
 
+
+           
+
+
+
             
                 <h5 class="title is-5">Task</h5>
                 <div class="dropdown" id="task-dropdown" style="display: inline;position: relative;">
@@ -364,11 +323,12 @@
                     <textarea class="textarea" rows="1" oninput="autoResize(this)" id="search-task"
                       contenteditable="true"></textarea>
                   </div>
-                  <div class="dropdown-menu" role="menu" style="position: absolute; left: -100;"">
-                    <div class="dropdown-content" id="task-items">
+                  <div class="dropdown-menu" role="menu" style="position: absolute; left: -380px; width: 760px; overflow: hidden;">
+                    <div class="dropdown-content" id="task-items" style="text-align: left;">
                     </div>
                   </div>
                 </div>
+                
                 <script>
                   var taskOnDisplay = null;
                   function autoResize(textarea) {
@@ -394,18 +354,41 @@
                     action_header.classList.add("is-5");
                     action_header.innerHTML = "Actions";
                     taskInfo.appendChild(action_header);
-                    {
-                      action_table = document.createElement("table");
-                      for (let i = 0; i < task.actions.length; i++) {
-                        action_type = '<span class="action_type">' + task.actions[i][0] + "</span>";
-                        node_type = '<span class="node_type">' + task.actions[i][1] + "</span>";
-                        node_repr = '<span class="node_repr">' + task.actions[i][2] + "</span>";
-                        action_table.innerHTML += "<tr><td>" + (i + 1) + ".</td><td>" + action_type +
-                          "</td ><td style='padding-left:0; padding-right:0;  vertical-align: top'>⮞</td><td>" +
-                          node_type + "<br>" + node_repr + "</td></tr > ";
-                      }
-                      taskInfo.appendChild(action_table);
-                    }
+                    
+                    action_table = document.createElement("div");
+                    console.log(task)
+                    
+                    action_table.innerHTML = `<div style="height:100%">
+                      <div class="task_title">
+                      Task:
+                      </div>
+                      <p class="task_content"> 
+                      ${task.task.replace(/\n/g, '<br>').replace(/\t/g, '&nbsp;&nbsp;&nbsp;&nbsp;')}
+                      </p>
+                      <div class="task_title">
+                      Response:
+                      </div>
+                      <p  class="task_content">
+                        ${task.response.replace(/\n/g, '<br>').replace(/\t/g, '&nbsp;&nbsp;&nbsp;&nbsp;')}
+                      </p>
+                      <div class="task_title">
+                      History:
+                      </div>
+                      <p  class="task_content">
+                        ${task.history.replace(/\n/g, '<br>').replace(/\t/g, '&nbsp;&nbsp;&nbsp;&nbsp;')}
+                      </p>
+                      <div class="task_title">
+                      Observation:
+                      </div>
+                      <p class="task_content">
+                        ${task.obs.replace(/\n/g, '<br>').replace(/\t/g, '&nbsp;&nbsp;&nbsp;&nbsp;')}
+                      </p>
+                    
+    
+                      </div>`
+                    
+                    taskInfo.appendChild(action_table);
+                  
                   }
 
                   function search_task() {
@@ -503,18 +486,7 @@
 <!-- Update or remove the relevant video files and descriptions -->
 
 <!-- BibTeX section: (CHANGE) Update or remove if not applicable -->
-<section class="section" id="BibTeX">
-  <div class="container is-max-desktop content">
-    <h2 class="title">BibTeX</h2>
-    <pre><code>@article{ou2024synatraturningindirectknowledge,
-      title={Synatra: Turning Indirect Knowledge into Direct Demonstrations for Digital Agents at Scale}, 
-      author={Tianyue Ou and Frank F. Xu and Aman Madaan and Jiarui Liu and Robert Lo and Abishek Sridhar 
-      and Sudipta Sengupta and Dan Roth and Graham Neubig and Shuyan Zhou},
-      journal={arXiv preprint}
-      }
-    </code></pre>
-  </div>
-</section>
+
 
 <!-- Footer: (REMOVE/CHANGE) If you don't want a license section, update or remove this part -->
 <footer class="footer">
