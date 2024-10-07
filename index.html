@@ -261,19 +261,19 @@
     <div class="columns is-three-fifths">
       <div class="column highlight is-8 content" style="
       width: 100%;">
-        <span style="font-weight:bold">
+        <span style="font-weight:bold; font-size:larger;">
           Introducing Synatra 
           <ul>
             <li> A data synthesis approach relying on indirect knowledge  <br>
-            <li> 100k next action demonstrations <br>
+            <li> 100k next action demonstrations in the form of web trajectories<br>
             <li> Synatra-CodeLlama-7B, a dedicated web navigation agent <br>
           </ul>
-          Our synthesized data teaches model to  <br>
-          <ul>
-            <li> Track its history <br>
-            <li> Plan ahead <br>
-            <li> Act on web pages <br>
-          </ul>
+            <!-- Our synthesized data teaches model to  <br>
+            <ul>
+              <li> Track its history <br>
+              <li> Plan ahead <br>
+              <li> Act on web pages <br>
+            </ul> -->
         </span>
         <br>
       </div>
@@ -324,19 +324,26 @@
             <md-block class="content">
               We generated 99,924 action steps of web trajectories data using a combination of online tutorials and random observations. We generated web trajectories covering websites from 21 domains and uses an action space with 12 different actions. 
               <br>
-              Each entry consists of: an observation in the form of accessibility tree, objective, history of previous actions, and the corresponding next action. Next action has 4 components: sub task for planning, CoT reasoning, action itself, brief summary of the current step for future history tracking.
-              <br>
-              <br>
-              
+              Each entry consists of: an observation in the form of accessibility tree, objective, history of previous actions, and the corresponding next action. Next action has four components: sub task for planning, CoT reasoning, the action itself, and a brief summary of the current step for future history tracking.
             </md-block>
+            </div>
           </div>
-          </div>
-          
+      </div>
+    </div>
+  </div>
+</section>
+<div class="container is-max-desktop">
+  <div class="columns is-centered has-text-centered">
           <!-- <img src="./static/images/action_space.png" style="width: 40%; height: auto;" > -->
-          <div style="display: inline-block; width: 30%; vertical-align: top;">
-          <img src="./static/images/website_entry_schema.png" style="width: 100%; height: auto;">
+          <div style="display: inline-block; width: 50%; vertical-align: top;">
+          <img src="./static/images/website_entry_schema.png" style="width: 50%; height: auto; margin-top: 30px;">
+          <md-block class="content">
+            <br>
+            <br>
+            Format of each training sample. 
+          </md-block>
           </div>
-          <div style="display: inline-block; width: 69%; vertical-align: top;">
+          <div style="display: inline-block; width: 50%; vertical-align: top;">
           <img src="./static/images/tmpp_popular_amazon_45_obj_2.png" style="width: 100%; height: auto;">
           <md-block class="content">
             <br>
@@ -344,11 +351,8 @@
             Top intents in our trajectories on shopping websites. 
           </md-block>
           </div>
-
-          <div class="content has-text-justified">
-            </div>
-          
         </div>
+    </div>
           <!-- <div class="columns is-multiline">
             <div class="column is-one-half">
               <img src="./static/images/tmpp_popular_amazon_45_obj_2.png" alt="Image 1">
@@ -452,7 +456,7 @@
                       ${task.task.replace(/\n/g, '<br>').replace(/\t/g, '&nbsp;&nbsp;&nbsp;&nbsp;')}
                       </p>
                       <div class="task_title">
-                      Response:
+                      Action:
                       </div>
                       <p  class="task_content">
                         ${task.response.replace(/\n/g, '<br>').replace(/\t/g, '&nbsp;&nbsp;&nbsp;&nbsp;')}
@@ -575,12 +579,12 @@
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
-    <pre><code>@article{ou2024synatraturningindirectknowledge,
-      title={Synatra: Turning Indirect Knowledge into Direct Demonstrations for Digital Agents at Scale}, 
-      author={Tianyue Ou and Frank F. Xu and Aman Madaan and Jiarui Liu and Robert Lo and Abishek Sridhar 
-      and Sudipta Sengupta and Dan Roth and Graham Neubig and Shuyan Zhou},
-      journal={arXiv preprint}
-      }
+    <pre><code>@inproceedings{Ou2024SynatraTI,
+      title={Synatra: Turning Indirect Knowledge into Direct Demonstrations for Digital Agents at Scale},
+      author={Tianyue Ou and Frank F. Xu and Aman Madaan and Jiarui Liu and Robert Lo and Abishek Sridhar and Sudipta Sengupta and Dan Roth and Graham Neubig and Shuyan Zhou},
+      year={2024},
+      url={https://api.semanticscholar.org/CorpusID:272831875}
+    }
     </code></pre>
   </div>
 </section>
