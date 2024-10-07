@@ -256,6 +256,31 @@
   </div>
 </section> -->
 
+<section class="hero teaser">
+  <div class="container is-max-widescreen">
+    <div class="columns is-three-fifths">
+      <div class="column highlight is-8 content" style="
+      width: 100%;">
+        <span style="font-weight:bold">
+          Introducing Synatra 
+          <ul>
+            <li> A data synthesis approach relying on indirect knowledge  <br>
+            <li> 100k next action demonstrations <br>
+            <li> Synatra-CodeLlama-7B, a dedicated web navigation agent <br>
+          </ul>
+          Our synthesized data teaches model to  <br>
+          <ul>
+            <li> Track its history <br>
+            <li> Plan ahead <br>
+            <li> Act on web pages <br>
+          </ul>
+        </span>
+        <br>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="section">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
@@ -297,18 +322,32 @@
           <div class = 'some text'>
             <div class="content has-text-justified">
             <md-block class="content">
-              We generated 99,924 action steps of web trajectories data using a combination of online tutorials and random observations. We generated web trajectories covering websites from 21 domains and uses an action space with 12 different actions.
+              We generated 99,924 action steps of web trajectories data using a combination of online tutorials and random observations. We generated web trajectories covering websites from 21 domains and uses an action space with 12 different actions. 
+              <br>
+              Each entry consists of: an observation in the form of accessibility tree, objective, history of previous actions, and the corresponding next action. Next action has 4 components: sub task for planning, CoT reasoning, action itself, brief summary of the current step for future history tracking.
+              <br>
+              <br>
+              
             </md-block>
           </div>
           </div>
           
           <!-- <img src="./static/images/action_space.png" style="width: 40%; height: auto;" > -->
-          <img src="./static/images/tmpp_popular_amazon_45_obj_2.png" style="width: 80%; height: auto;">
+          <div style="display: inline-block; width: 30%; vertical-align: top;">
+          <img src="./static/images/website_entry_schema.png" style="width: 100%; height: auto;">
+          </div>
+          <div style="display: inline-block; width: 69%; vertical-align: top;">
+          <img src="./static/images/tmpp_popular_amazon_45_obj_2.png" style="width: 100%; height: auto;">
+          <md-block class="content">
+            <br>
+            <br>
+            Top intents in our trajectories on shopping websites. 
+          </md-block>
+          </div>
+
           <div class="content has-text-justified">
             </div>
-          <md-block class="content">
-            Top intents in our trajectories on shopping websites
-          </md-block>
+          
         </div>
           <!-- <div class="columns is-multiline">
             <div class="column is-one-half">
@@ -501,7 +540,7 @@
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
         <h2 class="title is-3">Synatra-CodeLlama-7B Performance</h2>
-            <img src="./static/images/main_table.svg" style="width: 80%; height: auto;">
+            <img src="./static/images/website_table.png" style="width: 80%; height: auto;">
       </div>
     </div>
   </div>

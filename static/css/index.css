@@ -172,6 +172,10 @@ body {
   max-height: 400px !important;
 }
 
+.column highlight is-8 content{
+  width: 100% !important;
+}
+
 #interpolation-image-wrapper {
   width: 100%;
 }
